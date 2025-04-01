@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="view" style="width: 500px; height: 500px;border: 1px solid black;">
+    </div>
+    <div id="coord" style="position: absolute; display: none;">
+    </div>
+    <br>
+    <input type="text" id="keyEx">
+    <script>
+        document.getElementById("keyEx").addEventListener("keydown", function(e) {
+            let coordObj = document.getElementById("coord");
+            coordObj.innerHTML = "key: " + e.key + "code: " + e.code + 'shift: ' + e.shiftKey;
+            coordObj.style.display = 'block'
+        })
+    </script>
+    <script>
+        let obj = document.getElementById("view");
+        obj.addEventListener("mousemove", function(e) {
+            let coordX = e.clientX;
+            let coordY = e.clientY;
+            
+            let coordObj = document.getElementById("coord");
+            coordObj.innerHTML = "(X = " + coordX + ", " + coordY + ")";
+            coordObj.style.display = "block";
+            coordObj.style.left = coordX + 'px';
+            coordObj.style.top = coordY + 'px';
+        });
+        obj.addEventListener("mouseout", function() {
+            let coordObj = document.getElementById("coord");
+            coordObj.style.display = 'none';
+        })
+    </script>
+</body>
+</html>
